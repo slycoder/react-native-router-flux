@@ -158,7 +158,7 @@ class Actions {
       res.index = 0;
     }
     // process substates
-    for (const el of subStates) {
+    subStates.forEach((el) => {
       refs[el.key] = { key: el.key,
         name: el.key,
         ...el.props,
@@ -173,7 +173,7 @@ class Actions {
           assert(this.callback, 'Actions.callback is not defined!');
           this.callback({ key: el.key, type: ActionConst.REFRESH, ...filterParam(props) });
         };
-    }
+    });
     if (this[key]) {
       console.log(`Key ${key} is already defined!`);
     }
