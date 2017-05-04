@@ -17,7 +17,9 @@ import { assert } from './Util';
 import { getInitialState } from './State';
 
 function checkPropertiesEqual(action, lastAction) {
-  for (const key of Object.keys(action)) {
+  const keys = Object.keys(action);
+  for (let ii = 0; ii < keys.length; ii += 1) {
+    const key = keys[ii];
     if (['key', 'type', 'parent'].indexOf(key) === -1) {
       if (!isEqual(action[key], lastAction[key]) && (typeof action[key] !== 'function') && (typeof lastAction[key] !== 'function')) {
         return false;
@@ -272,7 +274,8 @@ export function findElement(state, key, type) {
     return state;
   }
   if (state.children) {
-    for (const child of state.children) {
+    for (let ii = 0; ii < state.children.length; ii += 1) {
+      const child = state.children[ii];
       const current = findElement(child, key, type);
       if (current) return current;
     }
